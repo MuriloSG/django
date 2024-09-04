@@ -1,0 +1,24 @@
+{% extends 'container.html' %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="task-details-page">
+    <div class="task-details-wrapper">
+        <div class="task-details-container">
+            <h1 class="task-h1">{{ task.title }}</h1>
+            <p class="task-description-text">{{ task.description }}</p>
+
+            <div class="task-status-indicator {% if task.completed %}task-status-completed{% else %}task-status-pending{% endif %}">
+                {% if task.completed %}
+                    Concluída
+                {% else %}
+                    Pendente
+                {% endif %}
+            </div>
+            <p class="task-meta-info"><strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y" }}</p>
+            <p class="task-meta-info"><strong>Data de conclusão:</strong> {% if task.completed %}{{ task.due_date|date:"d/m/Y" }}{% else %}Ainda não concluída{% endif %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

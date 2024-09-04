@@ -1,0 +1,18 @@
+{% extends 'container.html' %}
+
+{% block title %}Registrar{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h1>Registrar</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}">
+        {{ form.as_p }}
+        <button type="submit" class="login-btn">Registrar</button>
+    </form>
+    <div class="register-link">
+        <p>Já tem uma conta? <a href="/accounts/login">Faça o login</a></p>
+    </div>
+</div>
+{% endblock %}

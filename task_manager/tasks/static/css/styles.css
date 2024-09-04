@@ -1,0 +1,552 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5FFFA;
+    min-height: 100vh;
+}
+
+main{
+    min-height: 80.5vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: 	#B0E0E6;
+    padding: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-links ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar-links li {
+    margin-left: 2rem;
+    font-weight: 600;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+/*footer*/
+.footer {
+    background-color: #B0E0E6;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.875rem;
+     margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* tasks list */
+.create-task {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.btn-create-task {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-create-task:hover {
+    background-color: #218838;
+}
+
+.task-list {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.task-list  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Barra de Pesquisa e Filtro */
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-btn{
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.search-filter input[type="text"] {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#taskFilter {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    float: right;
+}
+
+/* Estilos da Lista de Tarefas */
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.task-item:hover {
+    background-color: #f1f1f1;
+}
+
+.task-title {
+    flex: 3;
+    font-size: 1.2rem;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.task-title:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.task-status {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 1rem;
+}
+
+.task-status.completed {
+    color: #28a745;
+}
+
+.task-status.pending {
+    color: #dc3545;
+}
+
+.task-actions {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.task-actions a {
+    font-size: 1.2rem;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.task-actions a:hover {
+    color: #000;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main{
+        min-height: 81.5vh;
+    }
+    .search-filter {
+        flex-direction: row; 
+        gap: 0.5rem; 
+        margin-bottom: 0;
+    }
+
+    .search-filter input[type="text"] {
+        width: 100%; 
+    }
+
+    #taskFilter {
+        margin-top: 0.5rem;
+        width: 100%; 
+        max-width: 100px; 
+        font-size: 0.9rem; 
+    }
+
+    .task-item {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .task-title {
+        font-size: 1rem; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        max-width: 100px; 
+    }
+
+    .task-status {
+        padding-right: 0;
+    }
+
+    .task-actions {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .btn-create-task{
+        margin-top: 0.5rem;
+    }
+}
+
+/* Estilo de detalhes da tarefa */
+.task-details-page .task-details-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.task-details-page .task-details-container {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.task-details-page .task-h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.task-details-page .task-description-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.task-details-page .task-status-indicator {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.task-details-page .task-status-completed {
+    background-color: #4caf50;
+}
+
+.task-details-page .task-status-pending {
+    background-color: #f44336;
+}
+
+.task-details-page .task-meta-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.task-details-page .task-action-buttons {
+    margin-top: 20px;
+}
+
+.task-details-page .task-edit-link, .task-details-page .task-delete-link {
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 10px;
+    color: #2196f3;
+}
+
+.task-details-page .task-edit-link:hover {
+    color: #1976d2;
+}
+
+.task-details-page .task-delete-link:hover {
+    color: #f44336;
+}
+
+/* Estilizacao do formulario de criar tarefa e editar*/
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 20px;
+}
+
+.form-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+}
+
+.form-check label {
+    display: flex;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: none;
+}
+
+.submit-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilização das mensagens de feedback */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.messages li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Estilos de mensagens */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/*Estilo da paginação*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.step-link {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-link {
+    text-decoration: none;
+    color: #007bff;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-link:hover {
+    background-color: #f1f1f1;
+}
+
+.current {
+    padding: 8px 16px;
+    margin: 0 10px;
+    font-weight: bold;
+    color: #555;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    border: 1px solid #ddd;
+}
+
+/* Estilo de login */
+.login-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; 
+}
+
+.login-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+
+.btn-logout {
+    background-color: transparent;
+    color: white;
+    border: none; 
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+/* Estilo do bloco de link de registro e login*/
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p {
+    font-size: 16px;
+    color: #333; 
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+.register-link a:hover {
+    text-decoration: underline; 
+    color: #0056b3;
+}

@@ -1,0 +1,70 @@
+{% extends 'container.html' %}
+
+{% block title %}Gerenciador de Tarefas{% endblock %}
+
+{% block content %}
+<div class="task-list">
+    <h1>Lista de Tarefas</h1>
+
+    <!-- Barra de Pesquisa e Filtro -->
+    <form method="GET" class="search-form">
+        <div class="search-filter">
+            <input type="text" id="taskSearch" name="search" placeholder="Pesquisar tarefas..." value="{{ request.GET.search }}">
+            <span class="search-btn">🔍</span>
+        </div>
+    </form>
+    <select id="taskFilter" name="filter">
+        <option value="1" {% if request.GET.filter == '1' %}selected{% endif %}>Concluídas</option>
+        <option value="0" {% if request.GET.filter == '0' %}selected{% endif %}>Pendentes</option>
+    </select>
+
+    <!-- Botão para Criar Nova Tarefa -->
+    <div class="create-task">
+        <a href="newtask/" class="btn-create-task">➕ Criar Tarefa</a>
+    </div>
+
+    <!-- Lista de Tarefas -->
+    <div class="tasks">
+        {% for task in tasks %}
+        <div class="task-item">
+            <a href="/task/{{task.id}}" class="task-title">{{ task.title }}</a>
+            <span class="task-status {% if task.completed %}completed{% else %}pending{% endif %}">
+                {% if task.completed %}
+                    Concluída
+                {% else %}
+                    Pendente
+                {% endif %}
+            </span>
+            <div class="task-actions">
+                <a href="edit/{{ task.id }}" class="edit-task">✏️</a>
+                <a href="delete/{{ task.id }}" class="delete-task">🗑️</a>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-link">
+                {% if tasks.has_previous  %}
+                    <a href="?page={{tasks.previus_page_number}}" class="pagination-link">Anterior</a>
+                {% endif %}
+
+                {% if tasks.paginator.num_pages %}
+                <span class="current">
+                    {{tasks.number}} de {{tasks.paginator.num_pages}}
+                </span>
+                {% endif %}
+
+                {% if tasks.has_next %}
+                    <a href="?page={{tasks.next_page_number}}" class="pagination-link">Próxima</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

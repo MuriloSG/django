@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% block title %}TASK MANAGER{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-title">TASK MANAGER</div>
+        <div class="navbar-links">
+             <ul>
+                {% if user.is_authenticated %}
+                <li><a href="/">Tasks</a></li>
+                {% else %}
+                <li><a href="/accounts/login">Entrar</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                <li>
+                    <div class="logout-button">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-logout">Logout</button>
+                        </form>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        
+    </nav>
+    
+    <main>
+        {% block content %}
+        <!-- Conteúdo da página -->
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 TASK MANAGER. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
